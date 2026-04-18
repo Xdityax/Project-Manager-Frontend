@@ -42,7 +42,7 @@ const DashboardLayout = () => {
             >
               <Avatar className="h-8 w-8">
                 <AvatarImage src={user?.profilePicture} />
-                <AvatarFallback>{user?.name?.split(' ')[0].charAt(0)}{user?.name?.split(' ')[1].charAt(0)}</AvatarFallback>
+                <AvatarFallback>{user?.name?.charAt(0)?.toUpperCase() || 'U'}</AvatarFallback>
               </Avatar>
               <ChevronDown className="h-4 w-4 text-muted-foreground" />
             </Button>

@@ -15,7 +15,7 @@ interface AuthContextType {
     isAuthenticated: boolean;
     isLoading: boolean;
     login:(email: string, password: string) => Promise<User>;
-    register: (name: string, email: string, password: string, phone?: string) => Promise<User>;
+    register: (name: string, email: string, password: string) => Promise<User>;
     logout: () => Promise<void>;
 }
 
@@ -74,12 +74,11 @@ const AuthProvider = ({children}:{ children: React.ReactNode }) => {
         return response.user;
   };
 
-    const register = async (name: string, email: string, password: string, phone?: string) => {
-            const response = await postData<{ token: string; user: User }, { name: string; email: string; password: string; phone?: string }>('/auth/register', {
-        name,
-        email,
-        password,
-                phone,
+const register = async (name: string, email: string, password: string) => {
+            const response = await postData<{ token: string; user: User }, { name: string; email: string; password: string }>('/auth/register', {
+                name,
+                email,
+                password,
       });
 
       setStoredToken(response.token);
